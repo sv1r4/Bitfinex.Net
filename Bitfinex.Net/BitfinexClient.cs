@@ -1308,8 +1308,8 @@ namespace Bitfinex.Net
             parameters.AddOptionalParameter("use_all_available", useAllAvailable == true ? 1 : (int?)null);
             parameters.AddOptionalParameter(side == OrderSide.Buy ? "buy_stoplimit_price" : "sell_stoplimit_price", stopLimitPrice?.ToString(CultureInfo.InvariantCulture));
             parameters.AddOptionalParameter("ocoorder", ocoOrder);
-            parameters.AddOptionalParameter("buy_price_oco", ocoBuyPrice);
-            parameters.AddOptionalParameter("sell_price_oco", ocoSellPrice);
+            parameters.AddOptionalParameter("buy_price_oco", ocoBuyPrice?.ToString(CultureInfo.InvariantCulture));
+            parameters.AddOptionalParameter("sell_price_oco", ocoSellPrice?.ToString(CultureInfo.InvariantCulture));
 
             return await SendRequest<BitfinexPlacedOrder>(GetUrl(PlaceOrderEndpoint, ApiVersion1), HttpMethod.Post, ct, parameters, true).ConfigureAwait(false);
         }
